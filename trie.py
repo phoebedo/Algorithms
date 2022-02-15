@@ -1,11 +1,9 @@
 # aka Prefix tree. A trie is an variant of an n-ary tree  in which characters are stored at each node. each path down the tree may represent a word. The null nodes are often used to indicate a complete word. 
 
-
-
 class Node: 
     def __init__(self) -> None:
-        self.count = 0 
         self.children = {}
+        self.count = 0 #how far is it from root 
 
 
 class Trie:
@@ -22,6 +20,7 @@ class Trie:
 
     def unique_prefix(self, word):
         curr_node = self.root
+        
         prefix = ""
 
         for c in word: 
