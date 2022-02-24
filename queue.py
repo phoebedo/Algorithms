@@ -16,40 +16,86 @@
 # }
 
 
-class Queue:
-    def __init__(self, maxsize):
-        self.front = self.size = 0
-        self.rear = maxsize - 1
-        self.items = [None] * maxsize
-        self.maxsize = maxsize
-    
-    def is_empty(self):
-        return self.size == 0
-    
-    def is_full(self):
-        return self.size == maxsize
-        
-    def enQueue(self, item):
-        if self.is_full():
-            return
-        self.rear += 1
-        self.items[self.rear] = item
-        self.size += 1
-        return self.items
-    
-    def deQueue(self):
-        if self.is_empty():
-            return
-        dequeued = self.items[self.front]
-        self.front += 1
-        self.size -= 1
-        return dequeued
+class MyCircularQueue(object):
 
-    def front(self):
+    def __init__(self, k):
+        """
+        :type k: int
+        """
+        self.front = self.rear = self.size = 0 
+        self.items = [None]*k
+        self.maxsize = k
+        
+
+    def enQueue(self, value):
+        """
+        :type value: int
+        :rtype: bool
+        """
+        if self.isFull():
+            return False
+        
+        self.items[self.rear] = value
+        self.rear +=1 
+        if self.rear >= self.maxsize:
+            self.rear = 0 
+        self.size +=1
+        return True
+
+    def deQueue(self):
+        """
+        :rtype: bool
+        """
+        if self.isEmpty():
+            return False
+        
+        self.front += 1
+        if self.front >= self.maxsize:
+            self.front = 0
+        self.size -= 1
+        return True
+        
+
+    def Front(self):
+        """
+        :rtype: int
+        """
+        if self.isEmpty():
+            return -1
         return self.items[self.front]
-    
-    def rear(self):
-        return self.items[self.rear]
+        
+
+    def Rear(self):
+        """
+        :rtype: int
+        """
+        if self.isEmpty():
+            return -1
+        return self.items[self.rear-1]
+        
+
+    def isEmpty(self):
+        """
+        :rtype: bool
+        """
+        return self.size == 0 
+
+    def isFull(self):
+        """
+        :rtype: bool
+        """
+        return self.size == self.maxsize
+        
+
+
+# Your MyCircularQueue object will be instantiated and called as such:
+# obj = MyCircularQueue(k)
+# param_1 = obj.enQueue(value)
+# param_2 = obj.deQueue()
+# param_3 = obj.Front()
+# param_4 = obj.Rear()
+# param_5 = obj.isEmpty()
+# param_6 = obj.isFull()
 
 
 # Enque    O(1)
@@ -113,4 +159,7 @@ class Node:
         self.data = data
         self.next = None
         self.prev = None    
-        
+    
+# Circular Queue - rewrite
+
+

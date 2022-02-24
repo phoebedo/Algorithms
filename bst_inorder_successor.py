@@ -2,6 +2,9 @@
 # - If  right child. To right then go as left as possible 
 #If no right child, go up until first right
 
+from logging.config import valid_ident
+
+
 class Node:
     def __init__(self,value, left=None, right=None, parent = None) -> None:
         self.value = value
@@ -41,4 +44,29 @@ tree.right.right.parent = tree.right
 print(successor(tree.left))
 
 
+
+# if dont have pointer back to parent?
+
+
+class TreeNode:
+    def __init__(self,val,left=None,right=None) -> None:
+        self.val = val
+        self.left = left 
+        self.right = right
+
+
+def inorderSucessor(root:TreeNode, p:TreeNode)->TreeNode:
+
+    if not root:
+        return None
+    cur = root 
+    prev = None
+    while cur:
+        if cur.val>p.val:
+            prev= cur
+            cur = cur.left
+        else:
+            cur = cur.right
+
+    return prev
 

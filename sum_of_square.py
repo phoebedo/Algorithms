@@ -1,4 +1,5 @@
-# given number n. return least number of squares needed to sum up to the number
+# given number n. 
+# return least number of squares needed to sum up to the number
 
 def sum_square(n):
     squares = []
